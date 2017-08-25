@@ -29,4 +29,5 @@ dependencies {
     implementation appDependencies.appCompat
     testImplementation 'junit:junit:4.12'
     implementation appDependencies.constraintLayout
+    implementation appDependencies.okhttp
 }
