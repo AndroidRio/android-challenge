@@ -1,0 +1,13 @@
+ext {
+
+    supportLibrary          = '26.0.1'
+    constraintLayoutVersion = '1.0.2'
+    okhttpVersion           = '3.8.1'
+
+    appDependencies = [
+            appCompat           : "com.android.support:appcompat-v7:$supportLibrary",
+            constraintLayout    : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+            okhttp              : "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    ]
+
+}
