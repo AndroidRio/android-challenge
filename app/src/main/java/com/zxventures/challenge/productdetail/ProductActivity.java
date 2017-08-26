@@ -42,6 +42,7 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
                     .build();
             injector.inject(this);
             presenter = injector.getPresenter();
+            presenter.onCreate();
         } else {
             finish();
         }

@@ -11,6 +11,8 @@ class ProductContract {
 
     interface ModelContract {
         void setPresenter(PresenterModelContract presenter);
+
+        void loadProduct();
     }
 
     interface PresenterModelContract {
@@ -21,5 +23,7 @@ class ProductContract {
         void attachView(ViewContract view);
 
         void detachView();
+
+        void onCreate();
     }
 }
