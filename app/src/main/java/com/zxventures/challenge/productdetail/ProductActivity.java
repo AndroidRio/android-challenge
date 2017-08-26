@@ -4,9 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProductActivity extends AppCompatActivity implements ProductContract.ViewContract {
 
@@ -15,6 +21,13 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
     private static final String ARG_POC_ID = "arg:pocId";
 
     private ProductContract.PresenterViewContract presenter;
+
+    @BindView(R.id.activity_product_image)
+    ImageView productImage;
+    @BindView(R.id.activity_product_price)
+    TextView price;
+    @BindView(R.id.activity_product_title)
+    TextView title;
 
 
     public static Intent newIntent(Context context, int adapterPosition, String categoryId, String pocId) {
@@ -31,7 +44,9 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+        ButterKnife.bind(this);
         if (getIntent().getExtras()!= null) {
+            supportPostponeEnterTransition();
             Bundle bundle = getIntent().getExtras();
             int position = bundle.getInt(ARG_ADAPTER_POSITION);
             String categoryId = bundle.getString(ARG_CATEGORY_ID);
@@ -50,7 +65,17 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
     }
 
     @Override
-    public void showProductDetail(PocCategorySearchQuery.Product product) {
+    public void showProductDetail(final PocCategorySearchQuery.Product product) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                PocCategorySearchQuery.ProductVariant productVariant = product.productVariants().get(0);
+                price.setText(String.format("R$ %.2f", productVariant.price()));
+                title.setText(productVariant.title());
+                Glide.with(ProductActivity.this).load(productVariant.imageUrl()).into(productImage);
+                supportStartPostponedEnterTransition();
+            }
+        });
 
     }
 }
