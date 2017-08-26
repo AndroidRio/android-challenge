@@ -1,5 +1,7 @@
 package com.zxventures.challenge.productlist.list;
 
+import android.view.View;
+
 import com.zxventures.challenge.PocCategorySearchQuery;
 
 import java.util.List;
@@ -42,5 +44,12 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
     @Override
     public void onFailureToLoadProducts() {
         view.showFailureState();
+    }
+
+    @Override
+    public void onProductClicked(View itemView, int adapterPosition) {
+        String categoryId = model.getCategoryId();
+        String pocId = model.getPocId();
+        view.displayProductDetail(itemView, adapterPosition, categoryId, pocId);
     }
 }

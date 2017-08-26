@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ProductListFragment extends Fragment implements ProductListContract.ViewContract {
+public class ProductListFragment extends Fragment implements ProductListContract.ViewContract, ProductListContract.ViewAdapter {
 
     private static final String ARG_CATEGORY_ID = "arg:categoryId";
     private static final String ARG_POC_ID = "arg:pocId";
@@ -90,7 +90,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ProductListAdapter adapter = new ProductListAdapter(products);
+                    ProductListAdapter adapter = new ProductListAdapter(ProductListFragment.this, products);
                     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
                     productList.setLayoutManager(layoutManager);
                     productList.setAdapter(adapter);
@@ -133,6 +133,16 @@ public class ProductListFragment extends Fragment implements ProductListContract
                     viewSwitcher.setDisplayedChild(1);
                 }
             });
+    }
+
+    @Override
+    public void onProductClicked(View itemView, int adapterPosition) {
+        presenter.onProductClicked(itemView, adapterPosition);
+    }
+
+    @Override
+    public void displayProductDetail(View itemView, int adapterPosition, String categoryId, String pocId) {
+
     }
 
     @Override
