@@ -11,7 +11,8 @@ ext {
             okhttp              : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             butterKnife         : "com.jakewharton:butterknife:$butterKnifeVersion",
             butterKnifeCompiler : "com.jakewharton:butterknife-compiler:$butterKnifeVersion",
-            design              : "com.android.support:design:$supportLibrary"
+            design              : "com.android.support:design:$supportLibrary",
+            recyclerView        : "com.android.support:recyclerview-v7:$supportLibrary"
     ]
 
 }
