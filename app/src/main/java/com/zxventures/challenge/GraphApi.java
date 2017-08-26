@@ -40,4 +40,8 @@ public final class GraphApi {
                 .httpCacheStore(cacheStore)
                 .build();
     }
+
+    public ApolloClient build() {
+        return apolloClient;
+    }
 }
