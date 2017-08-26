@@ -5,7 +5,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ViewSwitcher;
 
+import com.zxventures.challenge.AllCategoriesSearchQuery;
 import com.zxventures.challenge.R;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,5 +38,10 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
     @Override
     public void showLoading() {
         viewSwitcher.showNext();
+    }
+
+    @Override
+    public void showCategories(List<AllCategoriesSearchQuery.AllCategory> allCategories) {
+
     }
 }

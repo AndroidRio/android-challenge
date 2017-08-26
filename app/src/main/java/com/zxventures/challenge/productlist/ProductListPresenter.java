@@ -1,5 +1,9 @@
 package com.zxventures.challenge.productlist;
 
+import com.zxventures.challenge.AllCategoriesSearchQuery;
+
+import java.util.List;
+
 class ProductListPresenter implements ProductListContract.PresenterModelContract,
         ProductListContract.PresenterViewContract {
 
@@ -24,5 +28,10 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
     public void onCreate() {
         view.showLoading();
         model.loadCategories();
+    }
+
+    @Override
+    public void onCategoriesLoaded(List<AllCategoriesSearchQuery.AllCategory> allCategories) {
+        view.showCategories(allCategories);
     }
 }

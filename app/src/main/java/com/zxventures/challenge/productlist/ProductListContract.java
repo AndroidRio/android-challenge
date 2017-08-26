@@ -1,5 +1,9 @@
 package com.zxventures.challenge.productlist;
 
+import com.zxventures.challenge.AllCategoriesSearchQuery;
+
+import java.util.List;
+
 final class ProductListContract {
 
     private ProductListContract() {
@@ -8,6 +12,8 @@ final class ProductListContract {
     interface ViewContract {
 
         void showLoading();
+
+        void showCategories(List<AllCategoriesSearchQuery.AllCategory> allCategories);
     }
 
     interface ModelContract {
@@ -18,6 +24,7 @@ final class ProductListContract {
 
     interface PresenterModelContract {
 
+        void onCategoriesLoaded(List<AllCategoriesSearchQuery.AllCategory> allCategories);
     }
 
     interface PresenterViewContract {
