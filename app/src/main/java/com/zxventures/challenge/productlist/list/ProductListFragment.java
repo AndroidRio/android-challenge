@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
@@ -37,6 +38,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
     LinearLayout errorStateContainer;
     @BindView(R.id.fragment_product_container_empty_state)
     LinearLayout emptyStateContainer;
+    @BindView(R.id.fragment_product_container_loading_state)
+    FrameLayout loadingStateContainer;
 
     public ProductListFragment() {
     }
@@ -91,8 +94,17 @@ public class ProductListFragment extends Fragment implements ProductListContract
                     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
                     productList.setLayoutManager(layoutManager);
                     productList.setAdapter(adapter);
+                    viewSwitcher.setDisplayedChild(0);
                 }
             });
+    }
+
+    @Override
+    public void showLoadingState() {
+        loadingStateContainer.setVisibility(View.VISIBLE);
+        emptyStateContainer.setVisibility(View.GONE);
+        errorStateContainer.setVisibility(View.GONE);
+        viewSwitcher.setDisplayedChild(1);
     }
 
     @Override
@@ -103,7 +115,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
                 public void run() {
                     emptyStateContainer.setVisibility(View.VISIBLE);
                     errorStateContainer.setVisibility(View.GONE);
-                    viewSwitcher.showNext();
+                    loadingStateContainer.setVisibility(View.GONE);
+                    viewSwitcher.setDisplayedChild(1);
                 }
             });
     }
@@ -116,7 +129,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
                 public void run() {
                     errorStateContainer.setVisibility(View.VISIBLE);
                     emptyStateContainer.setVisibility(View.GONE);
-                    viewSwitcher.showNext();
+                    loadingStateContainer.setVisibility(View.GONE);
+                    viewSwitcher.setDisplayedChild(1);
                 }
             });
     }

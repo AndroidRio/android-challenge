@@ -13,6 +13,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:id="@+id/fragment_product_container_loading_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/fragment_product_container_error_state"
             android:layout_width="match_parent"

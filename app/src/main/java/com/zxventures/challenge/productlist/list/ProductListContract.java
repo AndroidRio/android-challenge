@@ -16,6 +16,8 @@ class ProductListContract {
         void showEmptyState();
 
         void showFailureState();
+
+        void showLoadingState();
     }
 
     interface ModelContract {
