@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
 import com.zxventures.challenge.PocCategorySearchQuery;
@@ -32,6 +33,10 @@ public class ProductListFragment extends Fragment implements ProductListContract
     RecyclerView productList;
     @BindView(R.id.fragment_product_list_viewswitcher)
     ViewSwitcher viewSwitcher;
+    @BindView(R.id.fragment_product_container_error_state)
+    LinearLayout errorStateContainer;
+    @BindView(R.id.fragment_product_container_empty_state)
+    LinearLayout emptyStateContainer;
 
     public ProductListFragment() {
     }
@@ -96,6 +101,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    emptyStateContainer.setVisibility(View.VISIBLE);
+                    errorStateContainer.setVisibility(View.GONE);
                     viewSwitcher.showNext();
                 }
             });
@@ -103,7 +110,15 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void showFailureState() {
-
+        if (getActivity() != null)
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    errorStateContainer.setVisibility(View.VISIBLE);
+                    emptyStateContainer.setVisibility(View.GONE);
+                    viewSwitcher.showNext();
+                }
+            });
     }
 
     @Override
