@@ -1,8 +1,10 @@
 package com.zxventures.challenge.productlist.list;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +17,7 @@ import android.widget.ViewSwitcher;
 
 import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
+import com.zxventures.challenge.productdetail.ProductActivity;
 
 import java.util.List;
 
@@ -141,8 +144,12 @@ public class ProductListFragment extends Fragment implements ProductListContract
     }
 
     @Override
-    public void displayProductDetail(View itemView, int adapterPosition, String categoryId, String pocId) {
-
+    public void displayProductDetail(View view, int adapterPosition, String categoryId, String pocId) {
+        Intent intent = ProductActivity.newIntent(getActivity(), adapterPosition, categoryId, pocId);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()
+                , view, getString(R.string.transition_product_image))
+                .toBundle();
+        startActivity(intent, bundle);
     }
 
     @Override
