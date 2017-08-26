@@ -1,5 +1,9 @@
 package com.zxventures.challenge.productlist.list;
 
+import com.zxventures.challenge.PocCategorySearchQuery;
+
+import java.util.List;
+
 class ProductListPresenter implements ProductListContract.PresenterModelContract,
         ProductListContract.PresenterViewContract {
 
@@ -23,5 +27,10 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
     @Override
     public void onViewCreated() {
         model.loadProducts();
+    }
+
+    @Override
+    public void onProductsLoaded(List<PocCategorySearchQuery.Product> products) {
+        view.showProducts(products);
     }
 }

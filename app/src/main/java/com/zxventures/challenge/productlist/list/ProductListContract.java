@@ -1,5 +1,9 @@
 package com.zxventures.challenge.productlist.list;
 
+import com.zxventures.challenge.PocCategorySearchQuery;
+
+import java.util.List;
+
 class ProductListContract {
 
     private ProductListContract() {
@@ -7,6 +11,7 @@ class ProductListContract {
 
     interface ViewContract {
 
+        void showProducts(List<PocCategorySearchQuery.Product> products);
     }
 
     interface ModelContract {
@@ -17,6 +22,7 @@ class ProductListContract {
 
     interface PresenterModelContract {
 
+        void onProductsLoaded(List<PocCategorySearchQuery.Product> products);
     }
 
     interface PresenterViewContract {

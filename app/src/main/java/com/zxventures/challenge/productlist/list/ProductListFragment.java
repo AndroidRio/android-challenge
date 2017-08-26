@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,5 +68,10 @@ public class ProductListFragment extends Fragment implements ProductListContract
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.onViewCreated();
+    }
+
+    @Override
+    public void showProducts(List<PocCategorySearchQuery.Product> products) {
+        //Does nothing
     }
 }

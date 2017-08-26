@@ -36,7 +36,9 @@ class ProductListModel implements ProductListContract.ModelContract {
         api.build().query(query).enqueue(new ApolloCall.Callback<PocCategorySearchQuery.Data>() {
             @Override
             public void onResponse(@Nonnull Response<PocCategorySearchQuery.Data> response) {
-
+                if (response.data().poc() != null) {
+                    presenter.onProductsLoaded(response.data().poc().products());
+                }
             }
 
             @Override
