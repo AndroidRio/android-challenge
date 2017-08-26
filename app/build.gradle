@@ -31,5 +31,6 @@ dependencies {
     implementation appDependencies.constraintLayout
     implementation appDependencies.okhttp
     implementation appDependencies.butterKnife
-    annotationProcessor  appDependencies.butterKnifeCompiler
+    annotationProcessor appDependencies.butterKnifeCompiler
+    implementation appDependencies.design
 }
