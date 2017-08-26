@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class ProductListFragment extends Fragment implements ProductListContract.ViewContract {
 
@@ -24,6 +25,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
     public static final String ARG_POC_ID = "arg:pocId";
 
     private ProductListContract.PresenterViewContract presenter;
+    private Unbinder unbinder;
 
     @BindView(R.id.fragment_product_list_rv)
     RecyclerView productList;
@@ -61,7 +63,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_product_list, container, false);
-        ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -83,5 +85,11 @@ public class ProductListFragment extends Fragment implements ProductListContract
                     productList.setAdapter(adapter);
                 }
             });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }
