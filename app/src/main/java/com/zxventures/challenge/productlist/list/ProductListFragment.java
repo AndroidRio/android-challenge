@@ -21,8 +21,8 @@ import butterknife.Unbinder;
 
 public class ProductListFragment extends Fragment implements ProductListContract.ViewContract {
 
-    public static final String ARG_CATEGORY_ID = "arg:categoryId";
-    public static final String ARG_POC_ID = "arg:pocId";
+    private static final String ARG_CATEGORY_ID = "arg:categoryId";
+    private static final String ARG_POC_ID = "arg:pocId";
 
     private ProductListContract.PresenterViewContract presenter;
     private Unbinder unbinder;
