@@ -48,7 +48,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), allCategories);
+                CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), "848", allCategories);
                 categoriesViewPager.setAdapter(adapter);
                 categoriesTab.setupWithViewPager(categoriesViewPager);
                 viewSwitcher.showPrevious();
