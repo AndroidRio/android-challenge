@@ -1,8 +1,10 @@
 package com.zxventures.challenge.productlist.list;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +17,7 @@ import android.widget.ViewSwitcher;
 
 import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
+import com.zxventures.challenge.productdetail.ProductActivity;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ProductListFragment extends Fragment implements ProductListContract.ViewContract {
+public class ProductListFragment extends Fragment implements ProductListContract.ViewContract, ProductListContract.ViewAdapter {
 
     private static final String ARG_CATEGORY_ID = "arg:categoryId";
     private static final String ARG_POC_ID = "arg:pocId";
@@ -90,7 +93,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ProductListAdapter adapter = new ProductListAdapter(products);
+                    ProductListAdapter adapter = new ProductListAdapter(ProductListFragment.this, products);
                     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
                     productList.setLayoutManager(layoutManager);
                     productList.setAdapter(adapter);
@@ -133,6 +136,20 @@ public class ProductListFragment extends Fragment implements ProductListContract
                     viewSwitcher.setDisplayedChild(1);
                 }
             });
+    }
+
+    @Override
+    public void onProductClicked(View itemView, int adapterPosition) {
+        presenter.onProductClicked(itemView, adapterPosition);
+    }
+
+    @Override
+    public void displayProductDetail(View view, int adapterPosition, String categoryId, String pocId) {
+        Intent intent = ProductActivity.newIntent(getActivity(), adapterPosition, categoryId, pocId);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()
+                , view, getString(R.string.transition_product_image))
+                .toBundle();
+        startActivity(intent, bundle);
     }
 
     @Override

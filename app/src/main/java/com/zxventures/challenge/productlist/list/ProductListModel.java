@@ -47,4 +47,14 @@ class ProductListModel implements ProductListContract.ModelContract {
             }
         });
     }
+
+    @Override
+    public String getPocId() {
+        return pocId;
+    }
+
+    @Override
+    public String getCategoryId() {
+        return categoryId;
+    }
 }

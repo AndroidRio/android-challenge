@@ -1,5 +1,7 @@
 package com.zxventures.challenge.productlist.list;
 
+import android.view.View;
+
 import com.zxventures.challenge.PocCategorySearchQuery;
 
 import java.util.List;
@@ -18,12 +20,18 @@ class ProductListContract {
         void showFailureState();
 
         void showLoadingState();
+
+        void displayProductDetail(View itemView, int adapterPosition, String categoryId, String pocId);
     }
 
     interface ModelContract {
         void setPresenter(PresenterModelContract presenter);
 
         void loadProducts();
+
+        String getPocId();
+
+        String getCategoryId();
     }
 
     interface PresenterModelContract {
@@ -39,5 +47,11 @@ class ProductListContract {
         void detachView();
 
         void onViewCreated();
+
+        void onProductClicked(View itemView, int adapterPosition);
+    }
+
+    interface ViewAdapter {
+        void onProductClicked(View itemView, int adapterPosition);
     }
 }
