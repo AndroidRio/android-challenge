@@ -102,6 +102,11 @@ public class ProductListFragment extends Fragment implements ProductListContract
     }
 
     @Override
+    public void showFailureState() {
+
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();

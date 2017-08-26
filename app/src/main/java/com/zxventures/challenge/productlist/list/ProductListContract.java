@@ -14,6 +14,8 @@ class ProductListContract {
         void showProducts(List<PocCategorySearchQuery.Product> products);
 
         void showEmptyState();
+
+        void showFailureState();
     }
 
     interface ModelContract {
@@ -25,6 +27,8 @@ class ProductListContract {
     interface PresenterModelContract {
 
         void onProductsLoaded(List<PocCategorySearchQuery.Product> products);
+
+        void onFailureToLoadProducts();
     }
 
     interface PresenterViewContract {

@@ -43,7 +43,7 @@ class ProductListModel implements ProductListContract.ModelContract {
 
             @Override
             public void onFailure(@Nonnull ApolloException e) {
-
+                presenter.onFailureToLoadProducts();
             }
         });
     }

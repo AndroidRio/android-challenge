@@ -37,4 +37,9 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
             view.showProducts(products);
         }
     }
+
+    @Override
+    public void onFailureToLoadProducts() {
+        view.showFailureState();
+    }
 }
