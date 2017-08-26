@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
 
 public class ProductActivity extends AppCompatActivity implements ProductContract.ViewContract {
@@ -46,5 +47,10 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
         } else {
             finish();
         }
+    }
+
+    @Override
+    public void showProductDetail(PocCategorySearchQuery.Product product) {
+
     }
 }

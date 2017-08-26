@@ -41,7 +41,16 @@ class ProductModel implements ProductContract.ModelContract {
         api.build().query(query).enqueue(new ApolloCall.Callback<PocCategorySearchQuery.Data>() {
             @Override
             public void onResponse(@Nonnull Response<PocCategorySearchQuery.Data> response) {
-
+                PocCategorySearchQuery.Poc poc = response.data().poc();
+                if (poc != null) {
+                    List<PocCategorySearchQuery.Product> productList = poc.products();
+                    if (productList == null || productList.isEmpty() || productList.size() <= position) {
+                        //Does nothing
+                    } else {
+                        PocCategorySearchQuery.Product product = productList.get(position);
+                        presenter.onProductLoaded(product);
+                    }
+                }
             }
 
             @Override
