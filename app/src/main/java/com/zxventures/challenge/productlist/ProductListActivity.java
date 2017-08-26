@@ -16,6 +16,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
 
         ProductListInjector injector = ProductListInjector.newBuilder()
                 .build();
+        injector.inject(this);
         presenter = injector.getPresenter();
         presenter.onCreate();
     }
