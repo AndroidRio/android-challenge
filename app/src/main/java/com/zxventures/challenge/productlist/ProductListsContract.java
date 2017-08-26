@@ -4,9 +4,9 @@ import com.zxventures.challenge.AllCategoriesSearchQuery;
 
 import java.util.List;
 
-final class ProductListContract {
+final class ProductListsContract {
 
-    private ProductListContract() {
+    private ProductListsContract() {
     }
 
     interface ViewContract {

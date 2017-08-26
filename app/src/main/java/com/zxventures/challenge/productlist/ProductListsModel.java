@@ -8,17 +8,17 @@ import com.zxventures.challenge.GraphApi;
 
 import javax.annotation.Nonnull;
 
-class ProductListModel implements ProductListContract.ModelContract {
+class ProductListsModel implements ProductListsContract.ModelContract {
 
-    ProductListContract.PresenterModelContract presenter;
+    ProductListsContract.PresenterModelContract presenter;
     private GraphApi api;
 
-    public ProductListModel(GraphApi instance) {
+    public ProductListsModel(GraphApi instance) {
         api = instance;
     }
 
     @Override
-    public void setPresenter(ProductListContract.PresenterModelContract presenter) {
+    public void setPresenter(ProductListsContract.PresenterModelContract presenter) {
         this.presenter = presenter;
     }
 

@@ -4,12 +4,12 @@ import android.support.annotation.NonNull;
 
 import com.zxventures.challenge.GraphApi;
 
-final class ProductListInjector {
+final class ProductListsInjector {
 
-    private ProductListModel model;
-    private ProductListPresenter presenter;
+    private ProductListsModel model;
+    private ProductListsPresenter presenter;
 
-    private ProductListInjector(Builder builder) {
+    private ProductListsInjector(Builder builder) {
 
     }
 
@@ -17,14 +17,14 @@ final class ProductListInjector {
         return new Builder();
     }
 
-    public void inject(@NonNull ProductListContract.ViewContract view) {
-        model = new ProductListModel(GraphApi.getInstance());
-        presenter = new ProductListPresenter(model);
+    public void inject(@NonNull ProductListsContract.ViewContract view) {
+        model = new ProductListsModel(GraphApi.getInstance());
+        presenter = new ProductListsPresenter(model);
         presenter.attachView(view);
         model.setPresenter(presenter);
     }
 
-    public ProductListPresenter getPresenter() {
+    public ProductListsPresenter getPresenter() {
         if (presenter == null) {
             throw new IllegalStateException("The method inject must have be called before.");
         }
@@ -34,8 +34,8 @@ final class ProductListInjector {
 
     static final class Builder {
 
-        public ProductListInjector build() {
-            return new ProductListInjector(this);
+        public ProductListsInjector build() {
+            return new ProductListsInjector(this);
         }
     }
 }

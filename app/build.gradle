@@ -33,4 +33,9 @@ dependencies {
     implementation appDependencies.butterKnife
     annotationProcessor appDependencies.butterKnifeCompiler
     implementation appDependencies.design
+    implementation appDependencies.recyclerView
+    implementation appDependencies.glide
+    annotationProcessor appDependencies.glideCompiler
+    implementation appDependencies.glideOkHttpInt
+    implementation appDependencies.cardView
 }

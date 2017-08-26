@@ -16,15 +16,17 @@ import java.util.List;
 public class CategoriesPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<AllCategoriesSearchQuery.AllCategory> categoryList;
+    private String pocId;
 
-    public CategoriesPagerAdapter(FragmentManager fm, List<AllCategoriesSearchQuery.AllCategory> categoryList) {
+    public CategoriesPagerAdapter(FragmentManager fm, String pocId, List<AllCategoriesSearchQuery.AllCategory> categoryList) {
         super(fm);
         this.categoryList = categoryList;
+        this.pocId = pocId;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return ProductListFragment.newInstance();
+        return ProductListFragment.newInstance(pocId, categoryList.get(position).id());
     }
 
     @Override
