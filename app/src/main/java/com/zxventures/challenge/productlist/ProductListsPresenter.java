@@ -4,18 +4,18 @@ import com.zxventures.challenge.AllCategoriesSearchQuery;
 
 import java.util.List;
 
-class ProductListPresenter implements ProductListContract.PresenterModelContract,
-        ProductListContract.PresenterViewContract {
+class ProductListsPresenter implements ProductListsContract.PresenterModelContract,
+        ProductListsContract.PresenterViewContract {
 
-    private ProductListContract.ModelContract model;
-    private ProductListContract.ViewContract view;
+    private ProductListsContract.ModelContract model;
+    private ProductListsContract.ViewContract view;
 
-    ProductListPresenter(ProductListContract.ModelContract model) {
+    ProductListsPresenter(ProductListsContract.ModelContract model) {
         this.model = model;
     }
 
     @Override
-    public void attachView(ProductListContract.ViewContract view) {
+    public void attachView(ProductListsContract.ViewContract view) {
         this.view = view;
     }
 

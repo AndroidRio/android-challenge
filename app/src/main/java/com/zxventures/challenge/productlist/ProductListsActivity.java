@@ -14,9 +14,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductListActivity extends AppCompatActivity implements ProductListContract.ViewContract {
+public class ProductListsActivity extends AppCompatActivity implements ProductListsContract.ViewContract {
 
-    ProductListContract.PresenterViewContract presenter;
+    ProductListsContract.PresenterViewContract presenter;
 
     @BindView(R.id.activity_product_list_viewswitcher)
     ViewSwitcher viewSwitcher;
@@ -31,7 +31,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
         setContentView(R.layout.activity_product_list);
         ButterKnife.bind(this);
 
-        ProductListInjector injector = ProductListInjector.newBuilder()
+        ProductListsInjector injector = ProductListsInjector.newBuilder()
                 .build();
         injector.inject(this);
         presenter = injector.getPresenter();
