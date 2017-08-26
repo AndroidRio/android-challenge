@@ -37,4 +37,5 @@ dependencies {
     implementation appDependencies.glide
     annotationProcessor appDependencies.glideCompiler
     implementation appDependencies.glideOkHttpInt
+    implementation appDependencies.cardView
 }
