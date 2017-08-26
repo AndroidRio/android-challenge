@@ -4,6 +4,7 @@ package com.zxventures.challenge.productlist.list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,16 @@ public class ProductListFragment extends Fragment implements ProductListContract
     }
 
     @Override
-    public void showProducts(List<PocCategorySearchQuery.Product> products) {
-        //Does nothing
+    public void showProducts(final List<PocCategorySearchQuery.Product> products) {
+        if (getActivity() != null)
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ProductListAdapter adapter = new ProductListAdapter(products);
+                    GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+                    productList.setLayoutManager(layoutManager);
+                    productList.setAdapter(adapter);
+                }
+            });
     }
 }
