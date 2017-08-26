@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 
 import com.zxventures.challenge.R;
 
-public class ProductListFragment extends Fragment {
+public class ProductListFragment extends Fragment implements ProductListContract.ViewContract {
 
     public static final String ARG_CATEGORY_ID = "arg:categoryId";
     public static final String ARG_POC_ID = "arg:pocId";
+
+    private ProductListContract.PresenterViewContract presenter;
 
     public ProductListFragment() {
     }
@@ -35,6 +37,12 @@ public class ProductListFragment extends Fragment {
             Bundle bundle = getArguments();
             String pocId = bundle.getString(ARG_POC_ID);
             String categoryId = bundle.getString(ARG_CATEGORY_ID);
+            ProductListInjector injector = ProductListInjector.newBuilder()
+                    .withPocId(pocId)
+                    .withCategoryId(categoryId)
+                    .build();
+            injector.inject(this);
+            presenter = injector.getPresenter();
         }
     }
 
