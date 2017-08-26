@@ -1,6 +1,7 @@
 package com.zxventures.challenge.productlist;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ViewSwitcher;
@@ -21,6 +22,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
     ViewSwitcher viewSwitcher;
     @BindView(R.id.activity_product_list_viewpager)
     ViewPager categoriesViewPager;
+    @BindView(R.id.activity_product_list_category_tabs)
+    TabLayout categoriesTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,15 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
     }
 
     @Override
-    public void showCategories(List<AllCategoriesSearchQuery.AllCategory> allCategories) {
-
+    public void showCategories(final List<AllCategoriesSearchQuery.AllCategory> allCategories) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), allCategories);
+                categoriesViewPager.setAdapter(adapter);
+                categoriesTab.setupWithViewPager(categoriesViewPager);
+                viewSwitcher.showPrevious();
+            }
+        });
     }
 }
