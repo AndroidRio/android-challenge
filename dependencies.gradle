@@ -10,7 +10,7 @@ ext {
             constraintLayout    : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
             okhttp              : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             butterKnife         : "com.jakewharton:butterknife:$butterKnifeVersion",
-            butterKnifeCompiler : "com.jakewharton:butterknife:$butterKnifeVersion"
+            butterKnifeCompiler : "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     ]
 
 }
