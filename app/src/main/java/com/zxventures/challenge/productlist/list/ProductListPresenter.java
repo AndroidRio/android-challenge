@@ -20,4 +20,8 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
 
     }
 
+    @Override
+    public void onViewCreated() {
+        model.loadProducts();
+    }
 }

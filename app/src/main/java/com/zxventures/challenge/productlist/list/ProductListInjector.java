@@ -2,6 +2,8 @@ package com.zxventures.challenge.productlist.list;
 
 import android.support.annotation.NonNull;
 
+import com.zxventures.challenge.GraphApi;
+
 final class ProductListInjector {
 
     private ProductListModel model;
@@ -19,7 +21,7 @@ final class ProductListInjector {
     }
 
     public void inject(@NonNull ProductListContract.ViewContract view) {
-        model = new ProductListModel(pocId, categoryId);
+        model = new ProductListModel(pocId, categoryId, GraphApi.getInstance());
         presenter = new ProductListPresenter(model);
         presenter.attachView(view);
         model.setPresenter(presenter);

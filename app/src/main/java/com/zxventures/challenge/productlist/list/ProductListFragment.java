@@ -61,4 +61,9 @@ public class ProductListFragment extends Fragment implements ProductListContract
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.onViewCreated();
+    }
 }
