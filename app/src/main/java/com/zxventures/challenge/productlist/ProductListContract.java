@@ -7,10 +7,13 @@ final class ProductListContract {
 
     interface ViewContract {
 
+        void showLoading();
     }
 
     interface ModelContract {
         void setPresenter(PresenterModelContract presenter);
+
+        void loadCategories();
     }
 
     interface PresenterModelContract {
@@ -21,5 +24,7 @@ final class ProductListContract {
         void attachView(ViewContract view);
 
         void detachView();
+
+        void onCreate();
     }
 }

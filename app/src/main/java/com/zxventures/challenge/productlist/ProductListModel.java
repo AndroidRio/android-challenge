@@ -8,4 +8,9 @@ class ProductListModel implements ProductListContract.ModelContract {
     public void setPresenter(ProductListContract.PresenterModelContract presenter) {
         this.presenter = presenter;
     }
+
+    @Override
+    public void loadCategories() {
+        //Does nothing
+    }
 }
