@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ViewSwitcher;
 
 import com.zxventures.challenge.PocCategorySearchQuery;
 import com.zxventures.challenge.R;
@@ -29,6 +30,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @BindView(R.id.fragment_product_list_rv)
     RecyclerView productList;
+    @BindView(R.id.fragment_product_list_viewswitcher)
+    ViewSwitcher viewSwitcher;
 
     public ProductListFragment() {
     }
@@ -83,6 +86,17 @@ public class ProductListFragment extends Fragment implements ProductListContract
                     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
                     productList.setLayoutManager(layoutManager);
                     productList.setAdapter(adapter);
+                }
+            });
+    }
+
+    @Override
+    public void showEmptyState() {
+        if (getActivity() != null)
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    viewSwitcher.showNext();
                 }
             });
     }

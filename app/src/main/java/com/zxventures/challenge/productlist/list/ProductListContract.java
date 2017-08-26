@@ -12,6 +12,8 @@ class ProductListContract {
     interface ViewContract {
 
         void showProducts(List<PocCategorySearchQuery.Product> products);
+
+        void showEmptyState();
     }
 
     interface ModelContract {

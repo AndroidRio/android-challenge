@@ -31,6 +31,10 @@ class ProductListPresenter implements ProductListContract.PresenterModelContract
 
     @Override
     public void onProductsLoaded(List<PocCategorySearchQuery.Product> products) {
-        view.showProducts(products);
+        if (products.isEmpty()) {
+            view.showEmptyState();
+        } else {
+            view.showProducts(products);
+        }
     }
 }
