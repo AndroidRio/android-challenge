@@ -38,4 +38,8 @@ dependencies {
     annotationProcessor appDependencies.glideCompiler
     implementation appDependencies.glideOkHttpInt
     implementation appDependencies.cardView
+
+    testImplementation appDependencies.powermockJunit
+    testImplementation appDependencies.powermockMockito
+    testImplementation appDependencies.powermockRule
 }
