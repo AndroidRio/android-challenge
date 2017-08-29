@@ -37,5 +37,7 @@ final class ProductListsContract {
         void detachView();
 
         void onCreate();
+
+        void onRetryButtonClicked();
     }
 }

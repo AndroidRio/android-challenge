@@ -39,4 +39,10 @@ class ProductListsPresenter implements ProductListsContract.PresenterModelContra
     public void onFailureToLoadCategories() {
         view.showFailureState();
     }
+
+    @Override
+    public void onRetryButtonClicked() {
+        view.showLoading();
+        model.loadCategories();
+    }
 }

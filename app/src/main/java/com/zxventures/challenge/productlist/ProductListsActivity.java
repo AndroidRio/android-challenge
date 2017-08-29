@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ViewSwitcher;
 
 import com.zxventures.challenge.AllCategoriesSearchQuery;
@@ -13,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProductListsActivity extends AppCompatActivity implements ProductListsContract.ViewContract {
 
@@ -24,6 +28,10 @@ public class ProductListsActivity extends AppCompatActivity implements ProductLi
     ViewPager categoriesViewPager;
     @BindView(R.id.activity_product_list_category_tabs)
     TabLayout categoriesTab;
+    @BindView(R.id.activity_product_list_progress)
+    ProgressBar progressBar;
+    @BindView(R.id.activity_product_list_container_error_state)
+    LinearLayout errorStateContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,9 @@ public class ProductListsActivity extends AppCompatActivity implements ProductLi
 
     @Override
     public void showLoading() {
-        viewSwitcher.showNext();
+        progressBar.setVisibility(View.VISIBLE);
+        errorStateContainer.setVisibility(View.GONE);
+        viewSwitcher.setDisplayedChild(1);
     }
 
     @Override
@@ -51,13 +61,25 @@ public class ProductListsActivity extends AppCompatActivity implements ProductLi
                 CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), "848", allCategories);
                 categoriesViewPager.setAdapter(adapter);
                 categoriesTab.setupWithViewPager(categoriesViewPager);
-                viewSwitcher.showPrevious();
+                viewSwitcher.setDisplayedChild(0);
             }
         });
     }
 
     @Override
     public void showFailureState() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                errorStateContainer.setVisibility(View.VISIBLE);
+                viewSwitcher.setDisplayedChild(1);
+            }
+        });
+    }
 
+    @OnClick(R.id.activity_product_list_retry)
+    public void onRetryButtonClicked() {
+        presenter.onRetryButtonClicked();
     }
 }
