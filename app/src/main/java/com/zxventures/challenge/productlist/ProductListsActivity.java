@@ -20,6 +20,8 @@ import butterknife.OnClick;
 
 public class ProductListsActivity extends AppCompatActivity implements ProductListsContract.ViewContract {
 
+    public static final String POC_ID = "852";
+
     ProductListsContract.PresenterViewContract presenter;
 
     @BindView(R.id.activity_product_list_viewswitcher)
@@ -58,7 +60,7 @@ public class ProductListsActivity extends AppCompatActivity implements ProductLi
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), "848", allCategories);
+                CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getSupportFragmentManager(), POC_ID, allCategories);
                 categoriesViewPager.setAdapter(adapter);
                 categoriesTab.setupWithViewPager(categoriesViewPager);
                 viewSwitcher.setDisplayedChild(0);
