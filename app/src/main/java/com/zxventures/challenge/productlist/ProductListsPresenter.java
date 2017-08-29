@@ -34,4 +34,15 @@ class ProductListsPresenter implements ProductListsContract.PresenterModelContra
     public void onCategoriesLoaded(List<AllCategoriesSearchQuery.AllCategory> allCategories) {
         view.showCategories(allCategories);
     }
+
+    @Override
+    public void onFailureToLoadCategories() {
+        view.showFailureState();
+    }
+
+    @Override
+    public void onRetryButtonClicked() {
+        view.showLoading();
+        model.loadCategories();
+    }
 }

@@ -14,6 +14,8 @@ final class ProductListsContract {
         void showLoading();
 
         void showCategories(List<AllCategoriesSearchQuery.AllCategory> allCategories);
+
+        void showFailureState();
     }
 
     interface ModelContract {
@@ -25,6 +27,8 @@ final class ProductListsContract {
     interface PresenterModelContract {
 
         void onCategoriesLoaded(List<AllCategoriesSearchQuery.AllCategory> allCategories);
+
+        void onFailureToLoadCategories();
     }
 
     interface PresenterViewContract {
@@ -33,5 +37,7 @@ final class ProductListsContract {
         void detachView();
 
         void onCreate();
+
+        void onRetryButtonClicked();
     }
 }
