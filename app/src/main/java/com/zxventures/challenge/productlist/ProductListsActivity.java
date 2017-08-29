@@ -55,4 +55,9 @@ public class ProductListsActivity extends AppCompatActivity implements ProductLi
             }
         });
     }
+
+    @Override
+    public void showFailureState() {
+
+    }
 }
