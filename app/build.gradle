@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.apollographql.android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.zxventures.challenge"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "GRAPHQL_URL", '\"https://803votn6w7.execute-api.us-west-2.amazonaws.com/dev/public/graphql\"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation appDependencies.appCompat
+    testImplementation 'junit:junit:4.12'
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.okhttp
+    implementation appDependencies.butterKnife
+    annotationProcessor appDependencies.butterKnifeCompiler
+    implementation appDependencies.design
+    implementation appDependencies.recyclerView
+    implementation appDependencies.glide
+    annotationProcessor appDependencies.glideCompiler
+    implementation appDependencies.glideOkHttpInt
+    implementation appDependencies.cardView
+
+    testImplementation appDependencies.powermockJunit
+    testImplementation appDependencies.powermockMockito
+    testImplementation appDependencies.powermockRule
+}
